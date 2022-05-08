@@ -4,7 +4,7 @@
 <h1 align="center">ethio clicks</h1>
 <h2 align="center"> Spring Boot Simple Users Profile Manager CRUD Web App </h2>
 
-The main objective of the spring boot project in this repository is to create a fullstack web application for implementing and testing spring boot as a backend to implement a File Upload and Download functionality. 
+The main objective of the spring boot project in this repository is to create a simple web application for implementing and testing spring boot as a backend to implement a File Upload and Download functionality. 
 
 In this project we are going to create a simple demo of user profile manager web application that enables to create , edit , delete and update user profile information, each and every user profile consists of profile picture as well as a video file,which is our main target for implementing and testing the file upload and download functionality.
 
@@ -70,7 +70,7 @@ in this code carfully Note that the prefix have changed to `spring.servlet` inst
 
 #### There is also another option for those who prefer to use yaml configuration 
 
-inside your application.yaml add the following line of code , this code will override the default limit for multipart file upload and enable it to accept uploading extra large size files. depending your goal you can set the value but here we will demonstrate by setting the upload limmit upto 2GB.
+inside your application.yaml add the following line of code , this configuration will override the default limit for multipart file upload and enable it to accept uploading extra large size files. depending your goal you can set the value but here we will demonstrate by setting the upload limit upto 2GB.
 
 
 ```
