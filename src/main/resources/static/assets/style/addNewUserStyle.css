@@ -1,0 +1,74 @@
+       *{
+          padding: 0px;
+          margin: 0px;
+        }
+
+        body{
+          width: 500px;
+          margin:auto;
+        }
+        body , form{
+           display: flex;
+           flex-direction: column;
+           justify-content: space-between;
+           color: #0e5b8e;
+        }
+     input[type="text"] , input[type="number"] {
+       border: 1px solid #1D9BF0;
+       height: 35px;
+       font-size: 15px;
+       border-radius: 5px;
+       padding-left: 10px;
+       outline: none;
+     }
+
+     input[type="submit"] , .back-btn{
+       width: 120px;
+       height: 40px;
+       outline: none;
+       border: 2px solid #999;
+       margin-top: 20px;
+       color: white;
+       background: #1D9BF0;
+       font-size: 16px;
+       border-radius: 5px;
+     }
+    a , a:visited {
+     text-decoration: none;
+
+    }
+     .back-btn {
+      cursor: pointer;
+      border: 1px solid #1D9BF0;
+      margin-top: -41px;
+      margin-left: 380px;
+      background: #f75925;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+     }
+
+    .photo-popup{
+      width: 100vw;
+      height: 100vh;
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: black;
+      font-weight: bold;
+      background: rgba( 0 , 0,0,0.6);
+      visibility: hidden;
+
+    }
+
+    .photo-popup-content{
+      width: 500px;
+      height: 400px;
+      background: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }

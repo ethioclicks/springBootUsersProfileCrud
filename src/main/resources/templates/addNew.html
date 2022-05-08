@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Add New User</title>
+    <link rel="stylesheet" href="http://localhost:8080/assets/style/addNewUserStyle.css" />
+    <script src="http://localhost:8080/assets/js/add-user-popup.js"></script>
+
+</head>
+<body>
+   <form th:action="@{/addNewProfile}" th:object="${newProfile}" method="post" enctype="multipart/form-data"  accept="image/png, image/jpeg">
+
+      <p style="margin-top: 20px;margin-left: 150px;font-weight: bold;font-size: 18px;">Add new user profile</p>
+
+      <input type="hidden" name="id" th:value="${userId}" />
+      <hr style="margin-top: 5px;color:#eee; " color="#eee" />
+
+
+      <label style="margin-top: 25px;" class="label">Name</label>
+      <input type="text" placeholder="user full name" th:value="${name}" name="userName" id="userName" />
+
+
+      <div style="margin-left: 150px;">
+          <img style="width:200px;height: 200px;" alt="Profile Picture" th:src="${profilePic}" />
+          <label onclick="popupDisplay(true)" class="back-btn" style="position: absolute;top: 357px;left:243px;background: #e5e3e3;color:#1D9BF0;font-size: 20px;">Upload</label>
+      </div>
+      <input type="hidden" name="profilePic" th:value="${profilePic}" ></input>
+
+       
+      <label style="margin-top: 15px;"  class="label" >Gender</label>
+      <div style="display: flex;">
+          <input type="radio" name="gender" value="male" >Male</input>
+          <input type="radio" name="gender" value="female">Female</input>
+      </div>
+
+      <label style="margin-top: 15px;"  class="label">Age</label>
+      <input type="number"  name="age" placeholder="user age" />
+
+      <input type="submit" value="ADD" />
+      <a class="back-btn" href="/">
+          Cancel
+      </a>
+   </form>
+
+  <div class="photo-popup">
+      <div class="photo-popup-content">
+          <form th:action="@{/uploadImage}" method="post"
+                enctype="multipart/form-data"
+                accept="image/png, image/jpeg">
+              <input type="hidden" id="name" name="name" value="notset" th:name="name">
+              <img style="width:200px;height: 200px;margin-left: 120px;" th:alt="${profilePic}"  th:src="${profilePic}" />
+              <label>Upload Photo</label>
+
+              <input type="file" name="image" accept="image/png, image/jpeg" />
+              <input type="submit" value="Upload">
+
+              <a class="back-btn" onclick="popupDisplay(false)" style="margin-left: 300px;">
+                  Cancel
+              </a>
+          </form>
+      </div>
+  </div>
+</body>
+</html>

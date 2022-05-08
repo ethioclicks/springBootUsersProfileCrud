@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="http://localhost:8080/assets/style/viewDetailStyle.css">
+    <script src="http://localhost:8080/assets/js/add-user-popup.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/
+font-awesome/5.15.2/css/all.min.css"/>
+    <style rel="stylesheet">
+          .video-popup{
+                  width: 100vw;
+                  height: 100vh;
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  color: black;
+                  font-weight: bold;
+                  background: rgba( 0 , 0,0,0.6);
+                  visibility: hidden;
+                  z-index: 2;
+                }
+
+                .video-popup-content{
+                  width: 680px;
+                  height: 540px;
+                  background: white;
+                  padding-left: 0px;
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                }
+
+                .cancel-videoUpload-btn {
+                   position: absolute;
+                   color: red;
+                   top: 68px;
+                   left: 610px;
+                   cursor: pointer;
+                }
+                 .video-popup-content video{
+                  margin-top: 20px;
+                 }
+
+                .video-popup-content .form{
+                  margin-top: 20px;
+                  color: red;
+                }
+
+                .video-popup-content input[type='submit']{
+                       width: 120px;
+                       height: 40px;
+                       outline: none;
+                       border: 2px solid #999;
+                       margin-top: 20px;
+                       margin-left: 94px;
+                       color: white;
+                       background: #1D9BF0;
+                       font-size: 16px;
+                       border-radius: 5px;
+                }
+                    .video-popup-content input[type="file"]{
+                       border: 1px solid #1D9BF0;
+                       height: 28px;
+                       font-size: 15px;
+                       border-radius: 3px;
+                       padding: 10px;
+                       outline: none;
+                    }
+                    .downloadVideo{
+                    visibility: hidden;
+                    }
+                   .downloadVideo button{
+
+                    width: 100px;
+                height: 30px;
+                color:white;
+                background-color: #1D9BF0;
+                border-radius: 7px;
+                position: absolute;
+                top: 460px;
+                left: 430px;
+                font-size: 18px;
+               }
+                   .downloadVideo button:hover{
+                   background-color: #1E7CCf;
+                   }
+                    .video-content:hover  .downloadVideo{
+                      visibility:  visible;
+                    }
+
+
+               #loader {
+
+                  display: none;
+                  position: absolute;
+                  left: 50%;
+                  top: 50%;
+                  z-index: 100;
+                  width: 120px;
+                  height: 120px;
+                  margin: -76px 0 0 -76px;
+                  border: 16px solid #f3f3f3;
+                  border-radius: 50%;
+                  border-top: 16px solid #3498db;
+                  -webkit-animation: spin 2s linear infinite;
+                  animation: spin 2s linear infinite;
+                }
+
+                @-webkit-keyframes spin {
+                  0% { -webkit-transform: rotate(0deg); }
+                  100% { -webkit-transform: rotate(360deg); }
+                }
+
+                @keyframes spin {
+                  0% { transform: rotate(0deg); }
+                  100% { transform: rotate(360deg); }
+                }
+
+                /* Add animation to "page content" */
+                .animate-bottom {
+                  position: relative;
+                  -webkit-animation-name: animatebottom;
+                  -webkit-animation-duration: 1s;
+                  animation-name: animatebottom;
+                  animation-duration: 1s
+                }
+
+                @-webkit-keyframes animatebottom {
+                  from { bottom:-100px; opacity:0 }
+                  to { bottom:0px; opacity:1 }
+                }
+
+                @keyframes animatebottom {
+                  from{ bottom:-100px; opacity:0 }
+                  to{ bottom:0; opacity:1 }
+                }
+
+    </style>
+
+
+    <script type="text/javascript">
+
+    function displayProgressBar() {
+
+        let loadingScreen = document.getElementById("loader");
+        loadingScreen.style.display="block";
+        alert(loadingScreen);
+        console.log(loadingScreen.NodeName);
+
+    }
+    </script>
+    <title th:text="${user.getUserName()}">User Profile View</title>
+</head>
+<body>
+<div class="container">
+    <div class="profile-cover">
+    </div>
+    <div class="profile-container">
+        <img class="profile-picture" th:src="${user.getProfilePic()}" />
+        <div class="downloadButton">
+
+            <a th:href="@{/userProfile/downloadPhoto/{id}(id=${user.getUserId()})}">
+                <button>Download</button>
+            </a>
+        </div>
+    </div>
+
+    <div class="user-profile-controll">
+        <p class="userName" th:text="${user.getUserName()}">user name</p>
+    </div>
+</div>
+<div class="profile-detail">
+   <div class="profileDetailsButtons">
+       <a href="/">
+           <button>Home</button>
+       </a>
+       <button>About</button>
+       <button onclick="popupDisplayVideo(true)">Videos</button>
+       <button>Photos</button>
+
+   </div>
+
+
+   <div class="video-popup">
+
+        <div class="video-popup-content">
+        <div class="video-content">
+            <video width="500" height="400" controls >
+                <source th:src="${user.getUserVid()}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+
+            <a class="downloadVideo" th:href="@{/userProfile/downloadVideo/{id}(id=${user.getUserId()})}">
+                    <button>Download</button>
+            </a>
+          </div>
+
+            <form method="post" action="/userProfile/uploadVideo"
+                  enctype="multipart/form-data">
+                <input type="hidden" id="userId" name="userId" th:value="${user.getUserId()}" />
+                <input type="file" name="userVideo" id="userVideo" />
+                <input type="submit" onclick="displayProgressBar()" value="Upload Video" />
+                <a class="cancel-videoUpload-btn" onclick="popupDisplayVideo(false)" style="margin-left: 300px;">
+                    X Cancel
+                </a>
+          </form>
+
+        </div>
+    </div>
+   <div id="loader"></div>
+
+   <h3>Profile Information</h3>
+   <table>
+        <tbody>
+        <tr>
+            <td class="details-label">
+                Full Name
+            </td>
+            <td th:text="${user.getUserName()}">
+                user name
+            </td>
+        </tr>
+
+        <tr>
+            <td class="details-label" >
+                Gender
+            </td>
+            <td th:text="${user.getGender()}">
+                Male
+            </td>
+        </tr>
+
+        <tr>
+            <td class="details-label">
+                Age
+            </td>
+            <td th:text="${user.getAge()}">
+                0
+            </td>
+        </tr>
+     </tbody>
+   </table>
+  </div>
+</body>
+</html>

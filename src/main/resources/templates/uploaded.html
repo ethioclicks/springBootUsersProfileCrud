@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+
+    <title>Upload Successfull</title>
+
+    <style rel="stylesheet">
+        .success {
+          width: 230px;
+          height: 230px;
+          background-color: #1D9BF0;
+          border-radius: 50%;
+          position: absolute;
+          top: 10%;
+          left: 43%;
+
+        }
+        .successText {
+         position: absolute;
+         top: 42%;
+         left: 0%;
+         color: white;
+         margin-left: 18px;
+         font-size: 20px;
+        }
+
+
+    </style>
+    <script>
+       setTimeout(disappear, 1300);
+        function disappear(){
+             var url = document.getElementById("redirectUrl").value;
+             console.log(url)
+             window.location.href =  url;
+        }
+    </script>
+</head>
+<body>
+<center>
+    <div class="success">
+       <input id="redirectUrl" type="hidden" value="https://www.google.com" th:value="${redirectUrl}" />
+       <b class="successText"> Uploaded Successfully</b>
+    </div>
+</center>
+</body>
+</html>

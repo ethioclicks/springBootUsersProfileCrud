@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="assets/style/indexStyle.css" />
+    <script src="assets/js/indexScript.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+    <meta charset="UTF-8">
+    <title>Landing Page</title>
+</head>
+<body>
+<header>
+     <form style="position: absolute ; top: 21vh;left: 32vw ;" action="/" method="get">
+         <input class="searchBox" type="text" placeholder="search user here" />
+         <input class="searchButton" type="submit" value="Search"/>
+     </form>
+
+     <nav>
+         <ul>
+             <a href="#">
+                 <li>All Users</li>
+             </a>
+             <a href="/addNew">
+                 <li>Add New User</li>
+             </a>
+
+             <a href="/fileManager">
+                 <li >File Manager</li>
+             </a>
+         </ul>
+     </nav>
+</header>
+<div class="mainContainer">
+    <div class="leftSection" style="width: 20px;height: 420px; display: flex;flex-direction: column;justify-content: center; align-items: center;">
+<!--        <img style="width: 200px;height: 200px; border-radius: 50%;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbvaBdtJ4GaN7m79jU-Y47NqT3Grvxd7qIZ9VKUZKyU1ynYKxoNdlQCixTRDnliBE62os&usqp=CAU">-->
+<!--        <label style="margin-top: 40px;" class="name">Users</label>-->
+<!--        <label style="margin-top: 10px;"  class="work">Social Media </label>-->
+<!--        <div style="margin-top: 10px;display: flex;justify-content: space-evenly; width: 200px;height: 40px;align-items: center;">-->
+
+<!--            <a href="#" class="fab fa-facebook"></a>-->
+<!--            <a href="#" class="fab fa-twitter"></a>-->
+<!--            <a href="#" class="fab fa-google"></a>-->
+<!--            <a href="#" class="fab fa-linkedin"></a>-->
+<!--        </div>-->
+    </div>
+    <div class="rightSection">
+
+    <!-- ADD New Button -->
+        <div class="addNewButton" style="border: 1px solid #aaa;margin-left: 87.51vw ; margin-top: 80px; background: #17d630; color: white;width: 120px;display: flex;justify-content: space-evenly;height: 40px;align-items: center;border-radius: 6px;">
+            <i class="fas fa-plus" ></i>
+            <a href="/addNew">
+            <button  style="cursor: pointer;height: 40px; font-size: 16px; color: white; background: transparent;outline:none;border: none;">Add New</button>
+            </a>
+        </div>
+
+    <!-- USERS LIST Header-->
+
+        <div style="background: #0069af; color: white;margin-top:5px;width: 98%;height: 34px;align-items: center; display: flex;justify-content:space-evenly;">
+            <label>User</label>
+            <label>Full Name</label>
+            <label >Gender</label>
+            <label>Age</label>
+            <label>Actions</label>
+        </div>
+
+    <!-- DISPLAY USERS LIST -->
+     <th:block th:each="user : ${allProfiles}">
+        <div class="userList" style="margin-top:5px;margin-left: 5px;border-left:3px solid #999;width: 96.8%;height: 84px;background: #eee;display: flex;align-items: center;">
+
+            <img style="width: 50px;height:50px;border-radius:50%; position: absolute;left: 14vw;" th:src="${user.getProfilePic()}" />
+            <p th:text="${user.getUserName()}" style="position: absolute;left: 29.9vw;">n</p>
+            <p th:text="${user.getGender()}" style="position: absolute;left: 48.8vw;" >g<p/>
+            <p th:text="${user.getAge()}" style="position: absolute;left: 66.5vw;" >a<p/>
+
+            <div class="controllButton" style="position: absolute;left: 80.4vw;">
+                <div class="viewDetailBtn">
+                    <a th:href="@{/userProfile/viewDetail/{id}(id=${user.getUserId()})}" >
+                        <i class="fas fa-eye" ></i>
+                    </a>
+                </div>
+
+                <div class="editBtn">
+                    <a th:href="@{/userProfile/edit/{id}(id=${user.getUserId()})}" >
+                       <i class="fas fa-edit" ></i>
+                    </a>
+                </div>
+
+                <div class="deleteBtn">
+                    <a th:class="'deleteBtn'+${user.getUserId()}" style="display: none;" th:href="@{/userProfile/deleteProfile/{id}(id=${user.getUserId()})}" >
+                        <i class="fas fa-trash" ></i>
+                    </a>
+                    <i th:onclick="'deleteUser('+${user.getUserId()}+')'" class="fas fa-trash" ></i>
+                </div>
+            </div>
+        </div>
+     </th:block>
+    </div>
+
+</div>
+</body>
+</html>

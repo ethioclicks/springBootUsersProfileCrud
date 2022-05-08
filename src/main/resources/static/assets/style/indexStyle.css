@@ -1,0 +1,142 @@
+        *{
+          padding: 0;
+          margin: 0;
+        }
+        header{
+          height: 18vh;
+          background-color: #64bffc;
+          display: flex;
+          align-items: center;
+
+        }
+
+        .mainContainer{
+
+        }
+
+        footer{
+          background-color: #22a0f4;
+          color: white;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          margin-top: 10px;
+          height: 15vh;
+        }
+        .searchBox{
+
+          border-radius: 7px;
+          padding-left: 10px;
+          font-size: 15px;
+          height: 50px;
+          width: 320px;
+          border: 1px solid #1D9BF0;
+          outline: none;
+        }
+        .searchButton {
+          width: 200px;
+          font-size: 19px;
+          font-weight: bold;
+          height: 55px;
+          border-top-right-radius: 10px;
+          border-bottom-right-radius: 10px;
+          background: #0069AF;
+          color: white;
+          border: none;
+          outline: none;
+          cursor: pointer;
+          margin-top: 1px;
+          margin-left: -10px;
+          border: 1px solid #ccc;
+        }
+        .searchButton:hover {
+        background-color: #067ccc;
+        }
+        header nav ul{
+          display: flex;
+          margin-left: 52vw;
+         }
+        header nav ul li {
+         list-style: none;
+         padding: 10px 18px;
+         margin-left: 3px;
+         border-radius: 4px;
+         width: 180px;
+         height: 30px;
+         background: transparent;
+         color: white;
+         text-align: center;
+         padding-top: 18px;
+         cursor: pointer;
+         font-size: 21px;
+         font-weight: bold;
+        }
+        a {
+        text-decoration: none;
+        }
+        header nav ul li:hover{
+         color: #ede8e8;
+        }
+
+        .mainContainer {
+          display: flex;
+        }
+
+        .leftSection{
+        }
+        .rightSection{
+         width: 100%;
+        }
+
+        .controllButton {
+            display: flex;
+            position: absolute;
+            left: 82vw;
+        }
+
+        .viewDetailBtn , a:visited {
+         border: none;
+         background: transparent;
+         color: #0b77bf;
+         width: 40px;
+         display: flex;
+         justify-content: space-evenly;
+         height: 36px;
+         font-size: 20px;
+         align-items: center;
+         cursor: pointer;
+        }
+       .editBtn{
+               border: none;
+               background: transparent;
+               color: #0b77bf;
+               font-size: 20px;
+               width: 45px;
+               display: flex;
+               justify-content: space-evenly;
+               margin-left: 2px;
+               height: 36px;
+               align-items: center;
+               cursor: pointer;
+       }
+
+        .viewDetailBtn:hover , .editBtn:hover , .deleteBtn:hover{
+         font-size: 23px;
+        }
+       .deleteBtn{
+           border: none;
+           font-size: 20px;
+           color: #f41d1d;
+           margin-left: 2px;
+           background: transparent;
+           width: 45px;
+           display: flex;
+           justify-content: space-evenly;
+           height: 36px;
+           align-items: center;
+           cursor: pointer;
+       }
+      .addNewButton:hover {
+           background-color: red;
+      }
