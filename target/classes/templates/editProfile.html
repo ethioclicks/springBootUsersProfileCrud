@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="http://localhost:8080/assets/style/editProfileStyle.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Add New User</title>
+
+</head>
+<body>
+
+<form th:action="@{/userProfile/update/{id}(id=${user.getUserId()})}" th:object="${user}" method="post" enctype="multipart/form-data" >
+
+    <p class="title-class" th:text="${title}">edit user profile</p>
+
+    <input type="hidden" name="id" th:value="${user.getUserId()}" />
+    <hr style="margin-top: 1px;color:#eee; " color="#eee" />
+    <label style="margin-top: 10px;" class="label">Name</label>
+
+    <input type="text" th:value="${user.getUserName()}" name="userName" />
+    <div style="margin-left: 150px;">
+        <img style="width:200px;height: 200px;" th:alt="${user.getProfilePic()}" th:src="${user.getProfilePic()}" />
+        <label class="back-btn upload-btn" onclick="popupDisplay(true)">Upload</label>
+    </div>
+    <input type="hidden" name="profilePic" th:value="${user.getProfilePic()}" >
+    <label style="margin-top: 15px;" class="label">Gender</label>
+
+    <div style="display: flex;" >
+        <input type="radio" name="gender" value="male" th:checked="${isMale}" >Male</input>
+        <input type="radio" name="gender" value="female"  th:checked="${isFemale}" >Female</input>
+    </div>
+
+    <label style="margin-top: 10px;"  class="label">Age</label>
+    <input type="number"  name="age" th:value="${user.getAge()}" />
+
+    <input type="submit" value="ADD" />
+    <a class="back-btn" href="/">
+        Cancel
+    </a>
+ </form>
+</body>
+</html>

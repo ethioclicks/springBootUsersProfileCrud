@@ -1,0 +1,151 @@
+
+         *{
+                padding: 0px;
+                margin: 0px;
+            }
+            .container {
+                width: 100vw;
+                background-color: white;
+            }
+            .profile-cover {
+                width: 97%;
+                height: 260px;
+                background-color: #64BFFC;
+                margin-top: 10px;
+                margin: auto;
+                border-bottom-left-radius: 5px;
+                border-bottom-right-radius: 5px;
+            }
+
+            .profile-container{
+                width: 250px;
+                height: 250px;
+                background-color: white;
+                position: absolute;
+                z-index: 1;
+                top: 140px;
+                left: 60px;
+                border-radius: 50%;
+            }
+            .profile-picture {
+                padding-left: 3px;
+                padding-top: 3px;
+                width: 244px;
+                height: 244px;
+                border-radius: 50%;
+            }
+            .user-profile-controll{
+                  margin-left: 310px;
+                  margin-top: 30px;
+                  display: flex;
+            }
+
+            .userName{
+                margin-left: 20px;
+                font-size: 30px;
+                font-weight: bold;
+                font-family:Georgia, Times, 'Times New Roman', serif;
+            }
+
+            .searchIcon {
+                background-color: rgb(247, 166, 166);
+                color: white;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 50%;
+                width: 50px;
+                height: 50px;
+                position: absolute;
+                left: 200px;
+                top: 550px;
+            }
+            .delete-btn , .edit-btn{
+                 margin-left: 5px;
+                 height: 35px;
+                 width: 150px;
+                 border-radius: 10px;
+                 display: flex;
+                 justify-content: center;
+                 align-items: center;
+                 color: #343;
+                 background-color: #efefef ;
+            }
+            .delete-btn:hover , .edit-btn:hover{
+                background-color: #D8DADF;
+                transition: background-color 0.4s;
+            }
+
+
+            .profile-detail {
+                 border-top: 1px solid rgb(209, 197, 197);
+                 width: 97%;
+                 margin: auto;
+                 margin-top: 82px;
+                 padding-left: 75px;
+            }
+           td {
+                padding: 0px;
+                margin: 0px;
+                height: 40px;
+                width: 50px;
+            }
+            table{
+             margin-top: 20px ;
+             width: 60vw;
+            }
+
+            .details-label {
+              color: #1D9BF0;
+              font-weight: bold;
+              padding-right: -350px;
+              padding-left: 35px;
+            }
+
+            .downloadButton {
+              display: none;
+            }
+
+           .downloadButton button{
+                width: 120px;
+                height: 50px;
+                color:white;
+                background-color: #1D9BF0;
+                border-radius: 20px;
+                position: absolute;
+                top: 160px;
+                left: 68px;
+                font-size: 18px;
+            }
+           .downloadButton button:hover{
+              font-size: 20px;
+              transition: background-color 0.5s;
+            }
+            .profile-container:hover .downloadButton {
+             display: block;
+             transition: display background-color 0.7s;
+            }
+
+            .profileDetailsButtons button{
+              height: 45px;
+              width: 110px;
+              font-size: 16px;
+              font-family: georgia;
+              color: black;
+              background-color: #efefef;
+              border: none;
+              outline: none;
+              margin-left: 5px;
+              border-radius: 12px;
+           }
+
+            .profileDetailsButtons {
+              position: absolute;
+              top: 39vh;
+              left: 60vw;
+            }
+            .profileDetailsButtons button:hover{
+               background-color: #dbdbdb;
+               transition: background-color 0.4s;
+            }
+

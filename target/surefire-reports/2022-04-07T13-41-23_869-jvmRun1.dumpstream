@@ -1,0 +1,17 @@
+# Created at 2022-04-07T13:41:27.291
+TestSet has not finished before stream error has appeared >> initializing exit by non-null configuration: null
+java.io.EOFException
+	at java.base/java.io.DataInputStream.readInt(DataInputStream.java:397)
+	at org.apache.maven.surefire.booter.MasterProcessCommand.decode(MasterProcessCommand.java:115)
+	at org.apache.maven.surefire.booter.CommandReader$CommandRunnable.run(CommandReader.java:391)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+
+
+# Created at 2022-04-07T13:41:28.874
+Unexpected IOException with stream: 2022-04-07 13:41:28.873  INFO 4084 --- [           main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+
+
+# Created at 2022-04-07T13:41:29.211
+Unexpected IOException with stream: 2022-04-07 13:41:29.211  INFO 4084 --- [           main] ringBootUsersProfileCrudApplicationTests : Started SpringBootUsersProfileCrudApplicationTests in 3.227 seconds (JVM running for 4.923)
+
+

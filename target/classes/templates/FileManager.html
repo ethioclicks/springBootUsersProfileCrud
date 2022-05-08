@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+    <title>File Manager</title>
+    <script>
+       //alert('file manager');
+
+       function expandContent(elem){
+
+       }
+
+    </script>
+    <style>
+       *{
+        padding: 0;
+        margin: 0;
+       }
+       body{
+        display: flex;
+        flex-direction:  column;
+       }
+        .header-text {
+
+            border-radius: 9px;
+            background-color: #64bffc;
+            width: 94vw;
+            height: 30px;
+            padding-top: 10px;
+            margin: auto;
+            color: white;
+            font-size: 18px;
+            text-align: center;
+        }
+        a , a:visited{
+            color: blue;
+            text-decoration: none;
+        }
+
+        .folder-name {
+         margin-top: 5px;
+         width: 90vw;
+         margin-left: 5vw;
+         height: 40px;
+         background-color: #eee;
+         border-left: 4px solid #0000FF;
+
+         display: flex;
+         align-items: center;
+        }
+        .folder-name:hover  , .files-name:hover {
+
+         background-color: #ccc;
+        }
+        .users-file-list {
+            display: flex;
+            flex-direction: column;
+            margin-top: 15px;
+        }
+        .files-name{
+         margin-top: 5px;
+         width: 87vw;
+         margin-left: 8vw;
+         height: 40px;
+         background-color: #eee;
+         border-left: 5px solid #64bffc;
+         display: flex;
+         align-items: center;
+        }
+
+        .back-btn{
+            position: absolute;
+            top: 28px;
+
+            border: 1px solid white;
+            border-radius: 9px;
+            left: 5.06vw;
+            background-color: #64bffc;
+            width: 110px;
+            height: 28px;
+            padding-top: 10px;
+            margin: auto;
+            color: white;
+            font-size: 18px;
+            text-align: center;
+          }
+
+         .back-btn:hover {
+           font-weight: bold;
+           border-radius: 12px;
+           background-color: red;
+         }
+    </style>
+</head>
+<body>
+<h1 class="header-text" style="margin-top: 25px; height: 55px;" >File Manager</h1>
+<a href="/" style="background-color: #64bffc;color: white;" class="back-btn">Back</a>
+<hr style="width: 90%; margin-left: 5%; color: #999;margin-top: 5px;"/>
+
+<th:block th:each="profile : ${allProfiles}">
+
+
+<div class="users-file-list" onclick="expandContent(this)">
+    <div class="folder-name">
+        <i style="font-size:26px;margin-left: 2px;color: blue;cursor: pointer;" onclick="expandContent(this)" class="fas fa-arrow-alt-circle-right"></i>
+        <p th:text="${profile.getUserName()}" style="margin-left: 6vw;color: #000088;" class="userName">
+            User Name
+        </p>
+    </div>
+
+    <div class="files-name">
+        <i style="font-size:26px;margin-left: 10px;color: blue;cursor: pointer;" onClick="expandContent(this)" class="fas fa-file-image"></i>
+        <a style="margin-left: 6.7vw;" class="userName" th:href="@{/userProfile/downloadPhoto/{id}(id=${profile.getUserId()})}">
+           <p th:text="${profile.getProfilePic()}">
+               Image Name
+           </p>
+        </a>
+    </div>
+
+    <div class="files-name">
+        <i style="font-size:26px;margin-left: 10px;color: blue;cursor: pointer;" onClick="expandContent(this)" class="fas fa-video"></i>
+        <a style="margin-left: 6vw;" class="userName" th:href="@{/userProfile/downloadVideo/{id}(id=${profile.getUserId()})}">
+           <p th:text="${profile.getUserVid()}">
+               Video Name
+           </p>
+        </a>
+    </div>
+
+    <div class="old-files">
+        <h2 class="header-text" style="margin-top: 5px;width: 87vw;margin-left: 8vw;background-color:#c2e3f9;border-radius: 5px;">Old Files</h2>
+    </div>
+</div>
+
+</th:block>
+</body>
+</html>
