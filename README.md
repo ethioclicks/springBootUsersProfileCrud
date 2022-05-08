@@ -11,7 +11,7 @@ In this project we are going to create a simple demo of user profile manager web
 
 ### We Used
 
-Development Machine:- Linux Operating System(debian based Linux OS). <br />
+Development Machine:- Linux(debian based Linux OS). <br />
 Spring Web <br />
 Thymeleaf <br />
 
@@ -158,7 +158,7 @@ we have a simple thymleaf page with a form that maps directly to the /uploadImag
     
 ```
 
-inside the View Detail page of specific users profile hovering on the profile picture will make the download button to popup and get visible, clicking the download button will send request to the above endpoint with the the users id , and based on the provided id the above endpoint will search for the picture and it will return the picture data through the response File stream.
+inside the View Detail page of specific user profile, hovering on the profile picture will make the download button to popup and clicking the download button will send request to the above endpoint with the the users id , and based on the provided id the above endpoint will search for the picture and it will return the picture data through the response File stream.
 
 ![image download](https://user-images.githubusercontent.com/88676535/167300058-aaf82e94-64c9-4b2c-b242-89195ff4556a.png)
 
@@ -224,3 +224,6 @@ public class AppExceptionHandler {
 </html>
 
 ```
+
+
+developed with ❤️ in ethioclicks
