@@ -224,6 +224,3 @@ public class AppExceptionHandler {
 </html>
 
 ```
-
-
-developed with ❤️ in ethioclicks
