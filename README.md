@@ -4,15 +4,16 @@
 <h1 align="center">ethio clicks</h1>
 <h2 align="center"> Spring Boot Simple Users Profile Manager CRUD Web App </h2>
 
-The main objective of the spring boot project in this repository is to create a simple web application for implementing and testing spring boot as a backend to implement a File Upload and Download functionality. 
+The main objective of this the spring boot project is to create a simple web application for implementing and testing spring mvc application that has File Upload and Download functionality. 
 
-In this project we are going to create a simple demo of user profile manager web application that enables to create , edit , delete and update user profile information, each and every user profile consists of profile picture as well as a video file,which is our main target for implementing and testing the file upload and download functionality.
+In this project we are going to create a simple web application that enables to create , edit , delete and update user profile information. Each and every user profile consists of profile picture as well as a video file,which is our main target for implementing and testing the file upload and download functionality.
 
 
 ### We Used
 
 Development Machine:- Linux(debian based Linux OS). <br />
 Spring Web <br />
+Thymeleaf <br />
 Thymeleaf <br />
 
 
