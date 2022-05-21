@@ -40,7 +40,6 @@ public class StorageService {
             Path uploadPath = Paths.get(uploadDir);
             Path file = uploadPath.resolve(filename);
             Resource resource = new UrlResource(file.toUri());
-            System.out.println("Resource: "+resource.getURL());
             if (resource.exists() || resource.isReadable()) {
                 return resource;
             } else {
@@ -50,4 +49,21 @@ public class StorageService {
             throw new RuntimeException("Error: " + e.getMessage());
         }
     }
+
+    public static Resource loadProfileFile(String uploadDir, String filename) throws IOException {
+        try {
+            Path uploadPath = Paths.get(uploadDir);
+            Path file = uploadPath.resolve(filename);
+            Resource resource = new UrlResource(file.toUri());
+            if (resource.exists() || resource.isReadable()) {
+                return resource;
+            } else {
+                throw new RuntimeException("Could not read the file!");
+            }
+        } catch (MalformedURLException e) {
+            throw new RuntimeException("Error: " + e.getMessage());
+        }
+    }
+
+
 }

@@ -1,6 +1,9 @@
 package com.ethioclicks.userProfileCrud.model;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class UserProfile {
   private  int userId;
   private String userName;
@@ -8,6 +11,9 @@ public class UserProfile {
   private Integer age;
   private String gender;
   private String userVid;
+  private List<String> archivedFiles = new ArrayList<>();
+  private List<Invoice> userFiles = new ArrayList<>();
+
 
   public String getUserVid() {
     return userVid;
@@ -55,6 +61,38 @@ public class UserProfile {
 
   public void setGender(String gender) {
     this.gender = gender;
+  }
+
+  public List<Invoice> getUserFiles() {
+    return userFiles;
+  }
+
+  public void addToUserFiles(Invoice newfile) {
+
+    if(newfile != null){
+      this.userFiles.add(newfile);
+    }
+    else{
+      System.out.println("Adding a new File has Failed!");
+    }
+  }
+
+  public List<String> getArchivedFiles() {
+    return archivedFiles;
+  }
+
+  public void addToArchivedFiles(String archivedFile) {
+
+    if(!archivedFile.isEmpty()){
+      archivedFiles.add(archivedFile);
+    }
+    else{
+      System.out.println("Adding a new Archive File Failed!");
+    }
+  }
+
+  public void setUserFiles(List<Invoice> userFiles) {
+    this.userFiles = userFiles;
   }
 
   public UserProfile(int id , String userName, String profilePic, Integer age, String gender) {

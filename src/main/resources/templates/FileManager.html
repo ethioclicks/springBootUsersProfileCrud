@@ -114,7 +114,7 @@
 
     <div class="files-name">
         <i style="font-size:26px;margin-left: 10px;color: blue;cursor: pointer;" onClick="expandContent(this)" class="fas fa-file-image"></i>
-        <a style="margin-left: 6.7vw;" class="userName" th:href="@{/userProfile/downloadPhoto/{id}(id=${profile.getUserId()})}">
+        <a style="margin-left: 10px;" class="userName" th:href="@{/userProfile/downloadPhoto/{id}(id=${profile.getUserId()})}">
            <p th:text="${profile.getProfilePic()}">
                Image Name
            </p>
@@ -123,8 +123,8 @@
 
     <div class="files-name">
         <i style="font-size:26px;margin-left: 10px;color: blue;cursor: pointer;" onClick="expandContent(this)" class="fas fa-video"></i>
-        <a style="margin-left: 6vw;" class="userName" th:href="@{/userProfile/downloadVideo/{id}(id=${profile.getUserId()})}">
-           <p th:text="${profile.getUserVid()}">
+        <a style="margin-left: 10px;" class="userName" th:href="@{/userProfile/downloadVideo/{id}(id=${profile.getUserId()})}">
+           <p th:text="${profile.getUserName()}"+"'s Video">
                Video Name
            </p>
         </a>

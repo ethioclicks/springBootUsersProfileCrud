@@ -26,19 +26,18 @@ public class VideoController {
         String name = UserProfileController.getProfiles().get(index).getUserName();
         String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
         System.out.println("File Name: "+fileName);
-        String uploadDir = "user-photos/"+name+"/video";
+        String uploadDir = "user-files/"+name+"/video";
         StorageService.saveFile(uploadDir, fileName, multipartFile);
 
 
         System.out.println(name+" Uploaded a new Video");
-        String url = baseUrl+"profile/"+name+"/video/"+fileName;
+        String url = baseUrl+"storage/"+name+"/video/"+fileName;
         UserProfileController.getProfiles().get(index).setUserVid(url);
         System.out.println("Generated Video Link: ' "+url+" '");
 
         model.addAttribute("redirectUrl" , "/userProfile/viewDetail/"+userId);
         return "uploaded";
     }
-
 
     @RequestMapping("/userProfile/downloadVideo/{id}")
     @ResponseBody
@@ -49,14 +48,14 @@ public class VideoController {
         String fileName;
 
         if(UserProfileController.getProfiles().get(index).getUserVid().endsWith("defaultVideo.mp4")){
-            userDir = "user-photos/";
+            userDir = "user-files/";
             fileName = "defaultVideo.mp4";
         }else{
             String str = UserProfileController.getProfiles().get(index).getUserVid();
-            str = str.replace("http://localhost:8080/profile/" , "");
+            str = str.replace("http://localhost:8080/storage/" , "");
             userDir = str.split("/")[0];
 
-            userDir = "user-photos/"+userDir+"/video";
+            userDir = "user-files/"+userDir+"/video";
             System.out.println("Image Directory: "+userDir);
 
             fileName = str.split("/")[2];
@@ -64,7 +63,7 @@ public class VideoController {
         }
 
         if(index == 0 && id != 1){
-            userDir = "user-photos/";
+            userDir = "user-files/";
             fileName = "defaultVideo.mp4";
         }
 

@@ -6,12 +6,15 @@
         body{
           width: 38vw;
           margin:auto;
+
         }
         body , form{
            display: flex;
            flex-direction: column;
            justify-content: space-between;
            color: #056cad;
+           border: 1px solid #1D9BF0;
+           padding: 20px;
         }
      input[type="text"] , input[type="number"] {
        border: 1px solid #1D9BF0;

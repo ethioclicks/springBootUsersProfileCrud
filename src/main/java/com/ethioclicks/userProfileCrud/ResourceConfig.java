@@ -13,7 +13,7 @@ public class ResourceConfig implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
 
 
-        String path = "file:///home/subadev/IdeaProjects/spring%20boot%20users%20profile%20crud/user-photos/";
-        registry.addResourceHandler("/profile/**").addResourceLocations(path);
+        String path = "file:///home/subadev/IdeaProjects/spring%20boot%20users%20profile%20crud/user-files/";
+        registry.addResourceHandler("/storage/**").addResourceLocations(path);
     }
 }

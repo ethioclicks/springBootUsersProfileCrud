@@ -25,11 +25,11 @@ public class ImageController {
 
         String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
         System.out.println("Picture File Name: "+fileName);
-        String uploadDir = "user-photos/"+name;
+        String uploadDir = "user-files/"+name;
         System.out.println(name+"\'s Profile Picture Upload in Progress... ");
         StorageService.saveFile(uploadDir, fileName, multipartFile);
         model.addAttribute("userId" , numberOfProfiles);
-        model.addAttribute("profilePic", baseUrl+"profile/"+name+"/"+fileName);
+        model.addAttribute("profilePic", baseUrl+"storage/"+name+"/"+fileName);
         model.addAttribute("name" , name);
         return "addNew";
     }
@@ -40,14 +40,14 @@ public class ImageController {
     public void downloadPic(@PathVariable int id , HttpServletResponse response) throws IOException {
         int index =  UserProfileController.getUserProfileIndex(id);
         String str = UserProfileController.getProfiles().get(index).getProfilePic();
-        str = str.replace("http://localhost:8080/profile/" , "");
+        str = str.replace("http://localhost:8080/storage/" , "");
         String imageDir = str.split("/")[0];
-        imageDir = "user-photos/"+imageDir;
+        imageDir = "user-files/"+imageDir;
         System.out.println("Image Directory: "+imageDir);
         String fileName = str.split("/")[1];
         System.out.println("FileName: "+fileName);
         if(index == 0 && id != 1){
-            imageDir = "user-photos/";
+            imageDir = "user-files/";
             fileName = "user.png";
         }
         Resource res = StorageService.loadProfilePic(imageDir , fileName);

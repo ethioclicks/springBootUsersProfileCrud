@@ -13,7 +13,7 @@ function popupDisplay(open){
              p.style.visibility = "hidden";
             }
         }
-function popupDisplayVideo(open){
+              function popupDisplayVideo(open){
                 if(open){
 
                          var p = document.querySelector(".video-popup");

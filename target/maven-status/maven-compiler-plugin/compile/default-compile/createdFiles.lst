@@ -1,8 +1,10 @@
 com/ethioclicks/userProfileCrud/exception/AppExceptionHandler.class
 com/ethioclicks/userProfileCrud/exception/FileStorageException.class
+com/ethioclicks/userProfileCrud/model/Invoice.class
 com/ethioclicks/userProfileCrud/services/StorageService.class
 com/ethioclicks/userProfileCrud/ResourceConfig.class
 com/ethioclicks/userProfileCrud/controller/VideoController.class
+com/ethioclicks/userProfileCrud/controller/InvoicesController.class
 com/ethioclicks/userProfileCrud/controller/ImageController.class
 com/ethioclicks/userProfileCrud/model/UserProfile.class
 com/ethioclicks/userProfileCrud/controller/UserProfileController.class

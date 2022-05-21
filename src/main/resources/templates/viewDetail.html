@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/
 font-awesome/5.15.2/css/all.min.css"/>
     <style rel="stylesheet">
-          .video-popup{
+                 .video-popup , .fileUploadForm{
                   width: 100vw;
                   height: 100vh;
                   position: absolute;
@@ -22,10 +22,10 @@ font-awesome/5.15.2/css/all.min.css"/>
                   font-weight: bold;
                   background: rgba( 0 , 0,0,0.6);
                   visibility: hidden;
-                  z-index: 2;
+                  z-index: 10;
                 }
 
-                .video-popup-content{
+                .video-popup-content , .fileUpload-content{
                   width: 680px;
                   height: 540px;
                   background: white;
@@ -51,7 +51,7 @@ font-awesome/5.15.2/css/all.min.css"/>
                   color: red;
                 }
 
-                .video-popup-content input[type='submit']{
+                .video-popup-content input[type='submit'] , .fileUpload-content input[type="submit"]{
                        width: 120px;
                        height: 40px;
                        outline: none;
@@ -63,7 +63,7 @@ font-awesome/5.15.2/css/all.min.css"/>
                        font-size: 16px;
                        border-radius: 5px;
                 }
-                    .video-popup-content input[type="file"]{
+                    .video-popup-content input[type="file"], .fileUpload-content input[type="file"]{
                        border: 1px solid #1D9BF0;
                        height: 28px;
                        font-size: 15px;
@@ -77,21 +77,21 @@ font-awesome/5.15.2/css/all.min.css"/>
                    .downloadVideo button{
 
                     width: 100px;
-                height: 30px;
-                color:white;
-                background-color: #1D9BF0;
-                border-radius: 7px;
-                position: absolute;
-                top: 460px;
-                left: 430px;
-                font-size: 18px;
+                    height: 30px;
+                    color:white;
+                    background-color: #1D9BF0;
+                    border-radius: 7px;
+                    position: absolute;
+                    top: 460px;
+                    left: 430px;
+                    font-size: 18px;
                }
                    .downloadVideo button:hover{
                    background-color: #1E7CCf;
                    }
-                    .video-content:hover  .downloadVideo{
-                      visibility:  visible;
-                    }
+               .video-content:hover  .downloadVideo{
+                   visibility:  visible;
+               }
 
 
                #loader {
@@ -140,19 +140,80 @@ font-awesome/5.15.2/css/all.min.css"/>
                   to{ bottom:0; opacity:1 }
                 }
 
+
+                .invoices-list , .invoice-items{
+                  border: 2px dashed #1D9BF0;
+                  padding: 10px;
+                  width: 520px;
+                  margin-left: 39.6%;
+                }
+
+                .invoice-items {
+                  width: 620px;
+                  padding: 3px;
+                  display: flex;
+                  height: 38px;
+                  border: none;
+                  margin-bottom: 10px;
+                 }
+
+                .invoice {
+                  border-radius: 10px;
+                  margin: 2px;
+                  background: #ddd;
+                  height: 40px;
+                  padding: 2px 10px;
+                }
+
+                .invoice:hover {
+                  background: #ccc;
+                }
+                a {
+                  text-decoration: none;
+                }
+                .files-controll p{
+                  font-size: 23px;
+                  color: red;
+                  padding-left: 10px;
+                }
+                .files-controll{
+                   position: fixed;
+                   padding: 5px;
+                   bottom:0;
+                   right:0;
+                   display:flex;
+                   flex-direction: column;
+                   border: 1px solid red;
+                }
+
+                .files-controll button , .fileUpload-content input[type='date']{
+                      width: 140px;
+                      height: 35px;
+                      border: 1px solid #aaa;
+                      border-radius: 7px;
+                      outline: none;
+                      background: #1A6ED8;
+                      color: white;
+                      font-wight: bold;
+                      font-size: 18px;
+                      margin-bottom: 8px;
+                }
+
+                .files-controll button:hover{
+                  background: #1b68c6;
+                 }
+
     </style>
 
 
     <script type="text/javascript">
-
-    function displayProgressBar() {
-
+     function displayProgressBar() {
         let loadingScreen = document.getElementById("loader");
         loadingScreen.style.display="block";
         alert(loadingScreen);
         console.log(loadingScreen.NodeName);
+     }
 
-    }
     </script>
     <title th:text="${user.getUserName()}">User Profile View</title>
 </head>
@@ -169,7 +230,6 @@ font-awesome/5.15.2/css/all.min.css"/>
             </a>
         </div>
     </div>
-
     <div class="user-profile-controll">
         <p class="userName" th:text="${user.getUserName()}">user name</p>
     </div>
@@ -182,38 +242,33 @@ font-awesome/5.15.2/css/all.min.css"/>
        <button>About</button>
        <button onclick="popupDisplayVideo(true)">Videos</button>
        <button>Photos</button>
-
    </div>
 
-
    <div class="video-popup">
-
         <div class="video-popup-content">
         <div class="video-content">
             <video width="500" height="400" controls >
                 <source th:src="${user.getUserVid()}" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
-
             <a class="downloadVideo" th:href="@{/userProfile/downloadVideo/{id}(id=${user.getUserId()})}">
                     <button>Download</button>
             </a>
           </div>
-
             <form method="post" action="/userProfile/uploadVideo"
                   enctype="multipart/form-data">
                 <input type="hidden" id="userId" name="userId" th:value="${user.getUserId()}" />
                 <input type="file" name="userVideo" id="userVideo" />
                 <input type="submit" onclick="displayProgressBar()" value="Upload Video" />
+
                 <a class="cancel-videoUpload-btn" onclick="popupDisplayVideo(false)" style="margin-left: 300px;">
                     X Cancel
                 </a>
-          </form>
 
+          </form>
         </div>
     </div>
    <div id="loader"></div>
-
    <h3>Profile Information</h3>
    <table>
         <tbody>
@@ -234,7 +289,6 @@ font-awesome/5.15.2/css/all.min.css"/>
                 Male
             </td>
         </tr>
-
         <tr>
             <td class="details-label">
                 Age
@@ -245,6 +299,116 @@ font-awesome/5.15.2/css/all.min.css"/>
         </tr>
      </tbody>
    </table>
+    <div class="fileUploadForm">
+        <div class="fileUpload-content">
+            <form method="post" action="/userProfile/uploadFile"
+                  enctype="multipart/form-data">
+                <input type="hidden" id="id" name="id" value="" th:value="${user.getUserId()}"  /> <br />
+                <input type="hidden" id="selectedFilestoArchive" value="" th:value="${selectedFilestoArchive}" />
+
+                <input type="file" name="userFile" id="userFile" style="margin-top:230px;background:#eee;" /> <br />  <br />
+                <input type="submit" onclick="displayProgressBar()" value="Upload File" style="margin-left:0px;" />
+
+                <a class="cancel-videoUpload-btn" onclick="displayFileUpload(false)" style="margin-left: 300px;">
+                    X Cancel
+                </a>
+            </form>
+        </div>
+    </div>
+
+   <div class="invoice-items">
+       <span style="position: absolute; left: 46.5%;margin-top: 10px;">ID</span>
+       <span style="position: absolute; left: 50%;margin-top: 10px;">File Name</span>
+       <span style="position: absolute; left: 66%; margin-top: 10px;">Uploaded Date</span>
+       <span style="position: absolute; left: 77%; margin-top: 10px;visibility: hidden;" class="selectedFilesCount">Selected Files: 0 Files</span>
+   </div>
+   <div class="invoices-list">
+       <input type="hidden" value="1" id="checkboxSize" th:value="${numberOfFiles}" />
+       <th:block th:each="file : ${userFiles}">
+           <div class="invoice">
+               <span style="position: absolute; left: 46.7%;margin-top: 10px;" th:text="${file.getId()}">Id</span>
+               <span style="position: absolute; left: 50%;margin-top: 10px;" th:text="${file.getInvoiceName()}">name</span>
+               <span style="position: absolute; left: 66.4%; margin-top: 10px;" th:text="${file.getInvoiceDate()}">date</span>
+               <input style="position: absolute; left: 79%; margin-top: 10px;" class="selectItem" id="0" th:id="${file.getId()}" type="checkbox"/>
+         </div>
+      </th:block>
+
+      <div class="files-controll">
+
+              <a id="downloadUrl" th:href="@{/userProfile/downloadZipFile/{id}(id=${user.getUserId()},selectedFiles='')}">
+                <button class="createArchiveBtn">Archive 0 Files</button>
+              </a>
+
+              <p th:if="${user.getArchivedFiles.isEmpty()}">no archived files</p>
+              <button onClick="displayFileUpload(true)" >+ Upload New</button>
+      </div>
+   </div>
+
   </div>
+   <script type="text/javascript">
+        var numberOfBoxes = document.getElementById('checkboxSize')
+        var archiveBtn = document.querySelector('.createArchiveBtn')
+        var filesCounter = document.querySelector('.selectedFilesCount')
+        var numberOfFiles = 0;
+        var listOfFilesToArchive = "";
+        console.log("boxes: "+numberOfBoxes.value);
+
+        function updateFilesToArchive(){
+          listOfFilesToArchive=""
+          for(var i=0;i<numberOfBoxes.value;i++){
+            if(document.getElementById(i).checked){
+              listOfFilesToArchive +=i+" "
+            }
+          }
+
+          var prevUrl = document.getElementById('downloadUrl').href;
+          var newUrl = prevUrl.split("=")[0]+"="+listOfFilesToArchive;
+          document.getElementById('downloadUrl').href = newUrl;
+
+          console.log(listOfFilesToArchive)
+        }
+
+        function increment(){
+            if(numberOfFiles >= 0){
+                  console.log("increment: - "+numberOfFiles);
+                  numberOfFiles++;
+                  filesCounter.innerText = "Selected Files: "+numberOfFiles+" Files"
+                  archiveBtn.innerText = "Archive "+numberOfFiles+" Files"
+             }
+        }
+
+        function decrement(){
+          if(numberOfFiles > 0){
+              console.log("decrement");
+              numberOfFiles--;
+              filesCounter.innerText = "Selected Files: "+numberOfFiles+" Files"
+              archiveBtn.innerText = "Archive "+numberOfFiles+" Files"
+          }
+        }
+
+       for(var i=0; i< numberOfBoxes.value;i++){
+         const checkbox = document.getElementById(i)
+         checkbox.addEventListener('change', (event) => {
+             //make files count visible to user
+
+             filesCounter.style.visibility="visible"
+             updateFilesToArchive()
+             if(event.currentTarget.checked) {
+                  increment()
+             } else {
+                  decrement()
+             }
+        })
+
+        function displayFileUpload(cond){
+          var fileUpload = document.querySelector(".fileUploadForm");
+          if(cond){
+            fileUpload.style.visibility = "visible"
+          }else{
+            fileUpload.style.visibility = "hidden"
+          }
+        }
+       }
+    </script>
 </body>
 </html>

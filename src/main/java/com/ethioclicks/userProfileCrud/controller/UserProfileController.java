@@ -1,5 +1,6 @@
 package com.ethioclicks.userProfileCrud.controller;
 
+import com.ethioclicks.userProfileCrud.model.Invoice;
 import com.ethioclicks.userProfileCrud.model.UserProfile;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,13 +17,25 @@ public class UserProfileController {
     private static List<UserProfile> profiles = new ArrayList<>();
     private static boolean isInitialized = false;
     public static int numberOfProfiles = 0;
-    private static String profilePic = "http://localhost:8080/profile/user.png";
+    private static String profilePic = "http://localhost:8080/storage/user.png";
     public static String baseUrl = "http://localhost:8080/";
 
     private static List<UserProfile> init() {
+        Invoice paulosPdfFile = new Invoice(0 , "Paulos's PDF Document" , "1","Paulos's PDF Document.txt");
+        Invoice paulosWordFile = new Invoice(1, "Paulos's Word Document" , "1","Paulos's Word Document.txt");
+        Invoice frePdfDoc = new Invoice(0 , "My Daily Expense" , "1","My Daily Expense.txt");
+        Invoice freWordDoc = new Invoice(1, "Ethio Telecom Budget" , "1","Ethio Telecom Budget.txt");
 
-        profiles.add(new UserProfile( 1,"CEO Frehiwot Tamiru" , baseUrl+"profile/CEO Frehiwot Tamiru/fire.jpg" , 6 ,"female"));
-        profiles.add(new UserProfile( 2,"Paulos Yibelo", baseUrl+"profile/Paulos Yibelo/paulos yibelo.jpg" , 6 , "male"));
+        UserProfile paulos = new UserProfile( 2,"Paulos Yibelo", baseUrl+"storage/Paulos Yibelo/paulos yibelo.jpg" , 6 , "male");
+        paulos.addToUserFiles(paulosPdfFile);
+        paulos.addToUserFiles(paulosWordFile);
+
+        UserProfile frehiwot = new UserProfile( 1,"CEO Frehiwot Tamiru" , baseUrl+"storage/CEO Frehiwot Tamiru/fire.jpg" , 6 ,"female");
+        frehiwot.addToUserFiles(frePdfDoc);
+        frehiwot.addToUserFiles(freWordDoc);
+
+        profiles.add(frehiwot);
+        profiles.add(paulos);
        return profiles;
     }
 
@@ -56,6 +69,7 @@ public class UserProfileController {
             isInitialized = true;
             numberOfProfiles += 3;
         }
+
         model.addAttribute("allProfiles" , profiles );
         return "index";
     }
@@ -64,7 +78,16 @@ public class UserProfileController {
     public String viewDetailPage(@PathVariable int id , Model model){
 
         int index = getUserProfileIndex(id);
-        model.addAttribute("user",profiles.get(index));
+        List<Invoice> files = getProfiles().get(index).getUserFiles();
+
+        for(int i = 0; i< getProfiles().get(index).getUserFiles().size(); i++){
+            System.out.println("File "+(i+1)+" -> "+ getProfiles().get(index).getUserFiles().get(i).getInvoiceName());
+        }
+
+        model.addAttribute("userFiles" , getProfiles().get(index).getUserFiles());
+        model.addAttribute("user", getProfiles().get(index));
+        model.addAttribute("numberOfFiles", getProfiles().get(index).getUserFiles().size());
+        model.addAttribute("selectedFilestoArchive",InvoicesController.selectedFilestoArchive);
         return "viewDetail";
     }
 
@@ -81,7 +104,7 @@ public class UserProfileController {
 
         numberOfProfiles += 1;
         // reset the default image back for a new user in the future
-        profilePic = "http://localhost:8080/profile/user.png";
+        profilePic = "http://localhost:8080/storage/user.png";
         addNewProfile(newProfile);
         return "redirect:/";
     }
@@ -95,11 +118,10 @@ public class UserProfileController {
 
    private void deleteProfile(int id) {
        int i = getUserProfileIndex(id);
-       System.out.println("Removing: "+profiles.get(i).getUserName()+" age: "+profiles.get(i).getAge());
+       System.out.println("Removing: " + profiles.get(i).getUserName() + " age: " + profiles.get(i).getAge());
        profiles.remove(i);
        System.out.println("Removed Successfully");
-    }
-
+   }
 
     // edit and update user profile
     @GetMapping("/userProfile/edit/{id}")
