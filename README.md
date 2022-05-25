@@ -227,3 +227,55 @@ public class AppExceptionHandler {
 ```
 ### Making an Archive and Compressing a List of Files
 
+When working with large numbers of files, sometimes it is useful to be able to package a lot of files together into a single archive file and make the environment so much easy for transferring , storing , managing and migration of data.
+
+`java.util.zip.ZipOutputStream` can be used to compress a file into ZIP format. Since a zip file can contain multiple entries, ZipOutputStream uses java.util.zip.ZipEntry to represent a zip file entry for each file.
+
+`java.util.zip package` is the package full of archive related classes, these core libraries are part where we will get zipping and unzipping related utilities.
+Creating a zip archive for a single file is very simple and easy compared with making of an archive file for many files ,but we need to create a ZipOutputStream object from the FileOutputStream object of destination file. Then we add a new ZipEntry to the ZipOutputStream and use FileInputStream to read the source file to ZipOutputStream object. Once we are done writing, we need to close ZipEntry and release all the resources.
+
+### Form to Add Files 
+we have already implemented a UI to enable us upload form and add a new file upload functionality
+```spring
+/userProfile/uploadFile
+```
+
+![noArchivedFile](https://user-images.githubusercontent.com/88676535/170358513-0b07e0b4-2bb9-4bf7-8e7d-7387dcdb0773.png)
+
+#### Add new Users
+
+![addNewFile](https://user-images.githubusercontent.com/88676535/170375641-0010adc1-861a-4cab-9872-3c7c398f68ab.png)
+
+#### After Adding a new file we will get a list files , we can be able to select a particular files we want to create extention from
+<br />
+![afterAding](https://user-images.githubusercontent.com/88676535/170370896-f3d0ba51-4dde-4336-beb2-a1b4f3c8fc20.png)
+<br />
+### Setup ZipOutputStream
+
+This class implements an output stream filter for writing files in the ZIP file format. Includes support for both compressed and uncompressed entries.
+
+`ZipOutputStream(OutputStream out)` : Creates a new ZIP output stream. <br />
+`ZipOutputStream(OutputStream out, Charset charset) `: Creates a new ZIP output stream.
+
+
+
+
+```java
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(byteArrayOutputStream);
+        ZipOutputStream zipOutputStream = new ZipOutputStream(bufferedOutputStream);
+
+
+```
+
+`zipOutputStream.putNextEntry(new ZipEntry(file.getName()));`
+
+Begins writing a new ZIP file entry and positions the stream to the start of the entry data. Closes the current entry if still active. The default compression method will be used if no compression method was specified for the entry, and the current time will be used if the entry has no set modification time.
+<br />
+![archive and downloading each invoice files of the user ](https://github.com/su8code/team/raw/main/chrome-capture-2022-4-25.gif)
+
+the End-point to make the final archive file for the user and as well as  and zip files enables as to select from a lot of students only selected student's can have  a great time . 
+download 
+/userProfile/downloadZipFile/{id}
+```
+

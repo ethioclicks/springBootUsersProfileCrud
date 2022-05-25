@@ -5,7 +5,6 @@ function popupDisplay(open){
                  p.style.visibility = "visible";
                  var userName = document.getElementById("userName");
                  document.getElementById("name").value = userName.value;
-                 alert(document.getElementById("name").value);
 
             }else{
 
