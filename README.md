@@ -225,4 +225,5 @@ public class AppExceptionHandler {
 </html>
 
 ```
-### Archiving and Compressing List of Files
+### Making an Archive and Compressing a List of Files
+
