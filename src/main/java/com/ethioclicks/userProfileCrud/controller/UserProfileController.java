@@ -21,10 +21,10 @@ public class UserProfileController {
     public static String baseUrl = "http://localhost:8080/";
 
     private static List<UserProfile> init() {
-        Invoice paulosPdfFile = new Invoice(0 , "Paulos's PDF Document" , "1","Paulos's PDF Document.txt");
-        Invoice paulosWordFile = new Invoice(1, "Paulos's Word Document" , "1","Paulos's Word Document.txt");
-        Invoice frePdfDoc = new Invoice(0 , "My Daily Expense" , "1","My Daily Expense.txt");
-        Invoice freWordDoc = new Invoice(1, "Ethio Telecom Budget" , "1","Ethio Telecom Budget.txt");
+        Invoice paulosPdfFile = new Invoice(0 , "Computer Graphics  2nd edition" , "2022-05-21","Computer Graphics  2nd edition.pdf");
+        Invoice paulosWordFile = new Invoice(1, "WordDoc.docx" , "2022-07-20","WordDoc.docx");
+        Invoice frePdfDoc = new Invoice(0 , "My Daily Expense" , "2022-05-25","My Daily Expense.txt");
+        Invoice freWordDoc = new Invoice(1, "Ethio Telecom Budget" , "2022-05-20","Ethio Telecom Budget.txt");
 
         UserProfile paulos = new UserProfile( 2,"Paulos Yibelo", baseUrl+"storage/Paulos Yibelo/paulos yibelo.jpg" , 6 , "male");
         paulos.addToUserFiles(paulosPdfFile);

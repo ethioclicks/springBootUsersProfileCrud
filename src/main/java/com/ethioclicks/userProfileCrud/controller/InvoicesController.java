@@ -14,8 +14,11 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletResponse;
 import javax.websocket.server.PathParam;
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -57,7 +60,8 @@ public class InvoicesController {
         LocalDate localDate = LocalDate.now();
         System.out.println(localDate);
         file.setInvoiceDate(localDate.toString());
-        file.setInvoiceFile(url);
+
+        file.setInvoiceFile(fileName);
 
         UserProfileController.getProfiles().get(index).addToUserFiles(file);
         System.out.println("Generated File Link: ' "+url+" '");
@@ -82,10 +86,13 @@ public class InvoicesController {
         ZipOutputStream zipOutputStream = new ZipOutputStream(bufferedOutputStream);
 
 
+
         for( int i=0; i< selectedFilesLength; i++){
 
             int fileIndex =parseInt(selectedFiles.split(" ")[i]);
-            System.out.println("Fetching File: "+getProfiles().get(index).getUserFiles().get(fileIndex).getInvoiceFile());
+            System.out.println("Fetching File: "+userDir+"/"+getProfiles().get(index).getUserFiles().get(fileIndex).getInvoiceFile());
+
+
             Resource res = StorageService.loadProfileFile(userDir , getProfiles().get(index).getUserFiles().get(fileIndex).getInvoiceFile());
 
             File file = res.getFile();
@@ -110,14 +117,31 @@ public class InvoicesController {
 
             BufferedOutputStream bos = new BufferedOutputStream(response.getOutputStream());
 
-            String fileOutput="/home/subadev/IdeaProjects/spring boot users profile crud/user-files/"+getProfiles().get(index).getUserName()+"/ArchivedFile/"+selectedFilesLength+"-invoice-files.zip";
+            System.out.println("File PAth: >>"+Paths.get("user-files"));
+            String folderName = "/home/subadev/IdeaProjects/ethioclicks/springBootUsersProfileCrud/user-files/"+getProfiles().get(index).getUserName()+"/ArchivedFile/";
+            String fileOutput=folderName+selectedFilesLength+"-invoice-files.zip";
 
+            if(!(new File(folderName).isDirectory())){
+                System.out.println("Directory Doesn't Exist: "+folderName);
+
+                if(new File(folderName).mkdir()){
+
+                }else{
+                    System.out.println("Director Not Created");
+                };
+
+            }
             if(new File(fileOutput).exists()){
                 System.out.println("Zip File Exist");
             }else{
                 Files.createFile(Paths.get(fileOutput));
             }
 
+            BufferedWriter out = Files.newBufferedWriter(
+                    Paths.get(fileOutput),
+                    StandardCharsets.UTF_8,
+                    StandardOpenOption.CREATE);
+            out.close();
 
             try (FileOutputStream fos = new FileOutputStream(new File(fileOutput) , false)) {
                 fos.write(byteArrayOutputStream.toByteArray());

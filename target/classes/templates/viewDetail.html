@@ -306,7 +306,7 @@ font-awesome/5.15.2/css/all.min.css"/>
                 <input type="hidden" id="id" name="id" value="" th:value="${user.getUserId()}"  /> <br />
                 <input type="hidden" id="selectedFilestoArchive" value="" th:value="${selectedFilestoArchive}" />
 
-                <input type="file" name="userFile" id="userFile" style="margin-top:230px;background:#eee;" /> <br />  <br />
+                <input type="file"  name="userFile" id="userFile" style="margin-top:230px;background:#eee;" /> <br />  <br />
                 <input type="submit" onclick="displayProgressBar()" value="Upload File" style="margin-left:0px;" />
 
                 <a class="cancel-videoUpload-btn" onclick="displayFileUpload(false)" style="margin-left: 300px;">
@@ -328,8 +328,8 @@ font-awesome/5.15.2/css/all.min.css"/>
            <div class="invoice">
                <span style="position: absolute; left: 46.7%;margin-top: 10px;" th:text="${file.getId()}">Id</span>
                <span style="position: absolute; left: 50%;margin-top: 10px;" th:text="${file.getInvoiceName()}">name</span>
-               <span style="position: absolute; left: 66.4%; margin-top: 10px;" th:text="${file.getInvoiceDate()}">date</span>
-               <input style="position: absolute; left: 79%; margin-top: 10px;" class="selectItem" id="0" th:id="${file.getId()}" type="checkbox"/>
+               <span style="position: absolute; left: 66.4%; margin-top: 10px;z-index:10;" th:text="${file.getInvoiceDate()}">date</span>
+               <input style="position: absolute; left: 79%; margin-top: 10px;z-index:10;" class="selectItem" id="0" th:id="${file.getId()}" type="checkbox"/>
          </div>
       </th:block>
 
