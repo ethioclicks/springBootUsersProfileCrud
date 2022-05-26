@@ -229,10 +229,10 @@ public class AppExceptionHandler {
 
 When working with large numbers of files, sometimes it is useful to be able to package a lot of files together into a single archive file and make the environment so much easy for transferring , storing , managing and migration of data.
 
-`java.util.zip.ZipOutputStream` can be used to compress a file into ZIP format. Since a zip file can contain multiple entries, ZipOutputStream uses java.util.zip.ZipEntry to represent a zip file entry for each file.
+`ZipOutputStream` can be used to compress a file into ZIP format. Since a zip file can contain multiple entries, ZipOutputStream uses ZipEntry to represent a zip file entry for each file.
 
-`java.util.zip package` is the package full of archive related classes, these core libraries are part where we will get zipping and unzipping related utilities.
-Creating a zip archive for a single file is very simple and easy compared with making of an archive file for many files.
+`java.util.zip package` is  a package where we will get list of classes used for archiving a list of files zipping as well as unziping the archive file.
+creating a zip archive for a single file is very simple and easy compared with making of an archive for mltiple files.
 
 ### We Have a Form to Add a new Files 
 we have already implemented a UI a new file upload functionality
