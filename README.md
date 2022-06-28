@@ -14,7 +14,6 @@ In this project we are going to create a simple web application that enables to 
 Development Machine:- Linux(debian based Linux OS). <br />
 Spring Web <br />
 Thymeleaf <br />
-Thymeleaf <br />
 
 
 ### Main Landing Page of the web app
