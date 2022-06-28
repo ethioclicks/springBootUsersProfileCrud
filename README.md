@@ -14,8 +14,8 @@ In this project we are going to create a simple web application that enables to 
 Our Development Machine is:- Linux(debian based Linux OS). <br />
 
 Our Spring Backend Has The following Dependencies: <br />
-Spring Web <br />
-Thymeleaf <br />
+***Spring Web 
+***Thymeleaf
 
 
 ### Main Landing Page of the web app
